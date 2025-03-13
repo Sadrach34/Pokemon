@@ -6,7 +6,7 @@
 inicio
 @endsection
 
-@section('breadcrums')
+@section('breadcrumbs')
 <li class='breadcrumb-item active'>Inicio</li>
 @endsection
 

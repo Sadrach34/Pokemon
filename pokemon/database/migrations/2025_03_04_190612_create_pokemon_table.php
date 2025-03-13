@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('nombre', 20);
             $table->unsignedTinyInteger('id_tipo1');
             $table->unsignedTinyInteger('id_tipo2')->nullable();
+            $table->unsignedTinyInteger('id_tipo2')->nullable();
+
 
             $table->timestamps();
 
