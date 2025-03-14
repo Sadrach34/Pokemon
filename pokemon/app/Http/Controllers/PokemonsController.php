@@ -14,7 +14,33 @@ class PokemonsController extends Controller
     }
 
     public function item($id) {
-        $pokemon = Pokemon::where('id', $id)->first();
-        return view('pokemon.item', compact('pokemon'));
+        $pokemon = Pokemon::find($id);
+        if (!$pokemon) {
+            abort(404, 'Pokemon not found');
+        }
+        return view('pokemon.pokemon-item', compact('pokemon'));
+    }
+
+    public function agregar() {
+        return view('pokemon.agregar');
+    }
+
+    public function store(Request $request) {
+        $data = $request->validate([
+            'nombre' => 'required|max:20|string',
+            'id_tipo1' => 'required|integer',
+            'id_tipo2' => 'integer|nullable',
+        ],[
+            'nombre.required' => 'El nombre es requerido',
+            'id_tipo1.required' => 'El tipo es requerido',
+            'id_tipo1.integer' => 'El tipo debe ser un número',
+            'id_tipo2.integer' => 'El tipo debe ser un número',
+        ]);
+        Pokemon::create([
+            'nombre' => $data['nombre'],
+            'id_tipo1' => $data['id_tipo1'],
+            'id_tipo2' => $data['id_tipo2'],
+        ]);
+        return redirect()->route('pokemon');
     }
 }

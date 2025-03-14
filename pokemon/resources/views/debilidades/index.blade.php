@@ -18,7 +18,7 @@ Debilidades
         2 => 'Fuego',
         3 => 'Agua',
         4 => 'Eléctrico',
-        5 => 'planta',
+        5 => 'Planta',
         6 => 'Hielo',
         7 => 'Lucha',
         8 => 'Veneno',
@@ -41,6 +41,7 @@ Debilidades
             <th>id</th>
             <th>id_tipo</th>
             <th>id_tipo_debil</th>
+            <th>acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -49,6 +50,11 @@ Debilidades
         <td>{{ $debilidad->id }}</td>
         <td>{{ $tipos[$debilidad->id_tipo] ?? $debilidad->id_tipo }}</td>
         <td>{{ $tipos[$debilidad->id_tipo_debil] ?? $debilidad->id_tipo_debil }}</td>
+        <td>
+            <a href="{{ route('debilidades.item', $debilidad->id) }}" class="btn btn-sm btn-primary">
+                <i class="fa fa-eye"></i>
+            </a>
+        </td>
     </tr>    
     @endforeach
     </tbody>

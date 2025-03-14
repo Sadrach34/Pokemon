@@ -11,4 +11,9 @@ class Debilidad extends Model
 
     protected $table = 'debilidades';
 
+    protected $fillable = [
+        'id',
+        'id_tipo',
+        'id_tipo_debil',
+    ];
 }

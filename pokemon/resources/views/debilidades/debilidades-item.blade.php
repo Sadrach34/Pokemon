@@ -1,19 +1,5 @@
 @extends('layouts.main')
 
-@section('top-title')
-{{ $pokemon->nombre }} - Pokemon
-@endsection
-
-@section('title')
-{{ $pokemon->nombre }} - Pokemon
-@endsection
-
-@section('breadcrumbs')
-<li class='breadcrumb-item'><a href= {{ route('inicio') }}>Inicio</a></li>
-<li class='breadcrumb-item active'>Pokemon</li>
-@endsection
-
-@section('content')
 @php
     $tipos = [
         1 => 'Normal',
@@ -36,17 +22,30 @@
         18 => 'Hada'
     ];
 @endphp
+
+@section('top-title')
+{{ $tipos[$debilidad->id_tipo] ?? $debilidad->id_tipo }} - debilidad
+@endsection
+
+@section('title')
+{{ $tipos[$debilidad->id_tipo] ?? $debilidad->id_tipo }} - debilidad
+@endsection
+
+@section('breadcrumbs')
+<li class='breadcrumb-item'><a href= {{ route('inicio') }}>Inicio</a></li>
+<li class='breadcrumb-item active'>debilidad</li>
+@endsection
+
+@section('content')
 <div class="row justify-content-center">
     <div class='col-6'>
         <div class='card'>
-            <div class='card-body'>
-                <h5 class='card-title'>{{ $pokemon->nombre }}</h5>
-                <h6 class='card-subtitle mb2 text-muted'>Pokemon tipo - {{ $tipos[$pokemon->id_tipo1] ?? $pokemon->id_tipo1 }}</h6>
-                <h6 class='card-subtitle mb2 text-muted'>Pokemon tipo - {{ $tipos[$pokemon->id_tipo2] ?? $pokemon->id_tipo2 }}</h6>
+            <div class='card-header'>
+                <h5 class='card-title'>{{ $tipos[$debilidad->id_tipo] ?? $debilidad->id_tipo }}</h5>
+                <h6 class='card-subtitle mb2 text-muted'>debilidad tipo - {{ $tipos[$debilidad->id_tipo_debil] ?? $debilidad->id_tipo_debil }}</h6>
                 <a href='#' class='card-link'>modificar</a>
                 <a href='#' class='card-link'>eliminar</a>
             </div>
-
         </div>
     </div>
 </div>

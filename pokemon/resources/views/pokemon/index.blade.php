@@ -3,12 +3,18 @@
 @section('top-title', 'Pokemon')
 
 @section('title')
-Pokemon
+<i class=''>Pokemon</i>
 @endsection
 
 @section('breadcrumbs')
 <li class='breadcrumb-item'><a href= {{ route('inicio') }}>Inicio</a></li>
 <li class='breadcrumb-item active'>Pokemon</li>
+@endsection
+
+@section('action')
+    <a class="btn btn-success" href= {{ route('pokemon.agregar') }}><i class="fa fa-plus"></i>
+        <i>Agregar</i>
+    </a>
 @endsection
 
 @section('content')

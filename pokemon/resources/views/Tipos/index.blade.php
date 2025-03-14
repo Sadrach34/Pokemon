@@ -17,6 +17,7 @@ Tipos
         <tr>
             <th>id</th>
             <th>Nombre</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,11 @@ Tipos
         <tr>
             <td>{{ $tipo->id }}</td>
             <td>{{ $tipo->nombre }}</td>
+            <td>
+                <a href="{{ route('tipos.item', $tipo->id) }}" class="btn btn-sm btn-primary">
+                    <i class="fa fa-eye"></i>
+                </a>
+            </td>
         </tr>
         @endforeach
     </tbody>
