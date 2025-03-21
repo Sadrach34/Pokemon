@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Tipo;
 
 class Debilidad extends Model
 {
@@ -13,7 +14,15 @@ class Debilidad extends Model
 
     protected $fillable = [
         'id',
-        'id_tipo',
-        'id_tipo_debil',
+        'tipo_id',
+        'debilidad',
     ];
+    
+    public function tipo(){
+        return $this->belongsTo(Tipo::class);
+    }
+
+    public function tipoDebilidad(){
+        return $this->belongsTo(Tipo::class, 'debilidad');
+    }
 }

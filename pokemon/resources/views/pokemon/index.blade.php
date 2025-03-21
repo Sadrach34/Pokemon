@@ -18,7 +18,18 @@
 @endsection
 
 @section('content')
-@php
+@if(\Session::has('message'))
+    <div class="alert alert-primary my-3">
+        <div class="card-header">
+            <h4 class="mb-0">Atencion</h4>
+        </div>
+        <div class="card-body">
+            {{!! \Session::get('message') !!}}
+        </div>
+    </div>
+@endif
+
+@php    
     $tipos = [
         1 => 'Normal',
         2 => 'Fuego',
@@ -45,8 +56,9 @@
         <tr>
             <th>id</th>
             <th>Nombre</th>
-            <th>Tipo_1</th>
-            <th>Tipo_2</th>
+            <th>primary</th>
+            <th>secondary</th>
+            <th>region</th>
             <th>created_at</th>
             <th>Acciones</th>
         </tr>
@@ -56,12 +68,16 @@
         <tr>
             <td>{{ $pokemon->id }}</td>
             <td>{{ $pokemon->nombre }}</td>
-            <td>{{ $tipos[$pokemon->id_tipo1] ?? $pokemon->id_tipo1 }}</td>
-            <td>{{ $tipos[$pokemon->id_tipo2] ?? $pokemon->id_tipo2 }}</td>
+            <td>{{ $tipos[$pokemon->primary] ?? $pokemon->primary }}</td>
+            <td>{{ $tipos[$pokemon->secondary] ?? $pokemon->secondary }}</td>
+            <td>{{ $pokemon->region }}</td>
             <td>{{ $pokemon->created_at->format('d/M/Y h:i:s') }}, {{ $pokemon->created_at->diffForHumans() }}</td>
             <td>
                 <a href="{{ route('pokemon.item', $pokemon->id) }}" class="btn btn-sm btn-primary">
                     <i class="fa fa-eye"></i>
+                </a>
+                <a href="{{ route('pokemon.modificar', $pokemon->id) }}" class="btn btn-sm btn-warning">
+                    <i class="fa fa-edit"></i>
                 </a>
             </td>
         </tr>

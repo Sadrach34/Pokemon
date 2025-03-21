@@ -19,8 +19,8 @@
         <div class='card'>
             <div class='card-header'>
                 <h5 class='card-title'>{{ $tipo->nombre }}</h5>
-                <a href='#' class='card-link'>modificar</a>
-                <a href='#' class='card-link'>eliminar</a>
+                <a href={{ route('tipos.modificar', $tipo->id)}} class='card-link'>Modificar</a>
+                <a href='#' class='card-link'>Eliminar</a>
             </div>
 
         </div>

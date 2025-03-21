@@ -14,14 +14,10 @@ return new class extends Migration
         Schema::create('debilidades', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('id_tipo');
-            $table->integer('id_tipo_debil');
+            $table->integer('tipo_id');
+            $table->integer('debilidad');
 
             $table->timestamps();
-
-            //relacion
-            $table->foreign('id_tipo')->references('id')->on('tipos')->onDelete('cascade');
-            $table->foreign('id_tipo_debil')->references('id')->on('tipos')->onDelete('cascade');
         });
     }
 

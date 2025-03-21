@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pokemon', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('nombre', 20);
-            $table->unsignedTinyInteger('primary');
-            $table->unsignedTinyInteger('secondary')->nullable();
-            $table->string('region');
-
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('status')->default(0);
         });
     }
 
@@ -28,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pokemon');
+        Schema::dropColumns('users');
     }
 };

@@ -43,8 +43,8 @@
             <div class='card-header'>
                 <h5 class='card-title'>{{ $tipos[$debilidad->id_tipo] ?? $debilidad->id_tipo }}</h5>
                 <h6 class='card-subtitle mb2 text-muted'>debilidad tipo - {{ $tipos[$debilidad->id_tipo_debil] ?? $debilidad->id_tipo_debil }}</h6>
-                <a href='#' class='card-link'>modificar</a>
-                <a href='#' class='card-link'>eliminar</a>
+                <a href={{ route('debilidades.modificar', $debilidad->id ) }} class='card-link'>Modificar</a>
+                <a href='#' class='card-link'>Eliminar</a>
             </div>
         </div>
     </div>

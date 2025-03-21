@@ -11,36 +11,29 @@ Debilidades
 <li class='breadcrumb-item active'>Debilidades</li>
 @endsection
 
-@section('content')
-@php
-    $tipos = [
-        1 => 'Normal',
-        2 => 'Fuego',
-        3 => 'Agua',
-        4 => 'Eléctrico',
-        5 => 'Planta',
-        6 => 'Hielo',
-        7 => 'Lucha',
-        8 => 'Veneno',
-        9 => 'Tierra',
-        10 => 'Volador',
-        11 => 'Psíquico',
-        12 => 'Bicho',
-        13 => 'Roca',
-        14 => 'Fantasma',
-        15 => 'Dragón',
-        16 => 'Siniestro',
-        17 => 'Acero',
-        18 => 'Hada'
-    ];
-@endphp
+@section('action')
+    <a class="btn btn-success" href= {{ route('debilidades.agregar') }}><i class="fa fa-plus"></i>
+        <i>Agregar</i>
+    </a>
+@endsection
 
+@section('content')
+@if(\Session::has('message'))
+    <div class="alert alert-primary my-3">
+        <div class="card-header">
+            <h4 class="mb-0">Atencion</h4>
+        </div>
+        <div class="card-body">
+            {{!! \Session::get('message') !!}}
+        </div>
+    </div>
+@endif
 <table class="table table-bordered table-hover table info">
     <thead class="table-info">
         <tr>
             <th>id</th>
             <th>id_tipo</th>
-            <th>id_tipo_debil</th>
+            <th>debilidad</th>
             <th>acciones</th>
         </tr>
     </thead>
@@ -48,11 +41,14 @@ Debilidades
     @foreach ($debilidades as $debilidad)
     <tr>
         <td>{{ $debilidad->id }}</td>
-        <td>{{ $tipos[$debilidad->id_tipo] ?? $debilidad->id_tipo }}</td>
-        <td>{{ $tipos[$debilidad->id_tipo_debil] ?? $debilidad->id_tipo_debil }}</td>
+        <td>{{ $debilidad->tipo->nombre }}</td>
+        <td>{{ $debilidad->tipoDebilidad->nombre }}</td>
         <td>
             <a href="{{ route('debilidades.item', $debilidad->id) }}" class="btn btn-sm btn-primary">
                 <i class="fa fa-eye"></i>
+            </a>
+            <a href="{{ route('debilidades.modificar', $debilidad->id) }}" class="btn btn-sm btn-warning">
+                <i class="fa fa-edit"></i>
             </a>
         </td>
     </tr>    

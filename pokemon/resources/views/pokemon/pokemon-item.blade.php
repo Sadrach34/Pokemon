@@ -41,10 +41,10 @@
         <div class='card'>
             <div class='card-body'>
                 <h5 class='card-title'>{{ $pokemon->nombre }}</h5>
-                <h6 class='card-subtitle mb2 text-muted'>Pokemon tipo - {{ $tipos[$pokemon->id_tipo1] ?? $pokemon->id_tipo1 }}</h6>
-                <h6 class='card-subtitle mb2 text-muted'>Pokemon tipo - {{ $tipos[$pokemon->id_tipo2] ?? $pokemon->id_tipo2 }}</h6>
-                <a href='#' class='card-link'>modificar</a>
-                <a href='#' class='card-link'>eliminar</a>
+                <h6 class='card-subtitle mb2 text-muted'>Pokemon tipo - {{ $tipos[$pokemon->primary] ?? $pokemon->primary }}</h6>
+                <h6 class='card-subtitle mb2 text-muted'>Pokemon tipo - {{ $tipos[$pokemon->secondary] ?? $pokemon->secondary }}</h6>
+                <a href={{ route('pokemon.modificar', $pokemon->id) }} class='card-link'>Modificar</a>
+                <a href='#' class='card-link'>Eliminar</a>
             </div>
 
         </div>
