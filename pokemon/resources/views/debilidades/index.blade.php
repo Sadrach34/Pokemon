@@ -50,9 +50,41 @@ Debilidades
             <a href="{{ route('debilidades.modificar', $debilidad->id) }}" class="btn btn-sm btn-warning">
                 <i class="fa fa-edit"></i>
             </a>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $debilidad->id }}">
+                <i class="fa fa-remove"></i>
+            </button>
         </td>
     </tr>    
     @endforeach
     </tbody>
 </table>
+@endsection
+
+@section('modales')
+    @foreach($debilidades as $debilidad)
+        <div class="modal fade" id="exampleModal{{ $debilidad->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">'
+                    <form method="POST" action="{{ route('debilidades.kranky') }}">
+                        @csrf
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Desea darle kranky &copy;?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4> El debilidad 
+                                <strong>{{ $debilidad->tipo->nombre }}</strong></h4>
+                                <strong>{{ $debilidad->tipoDebilidad->nombre }}</strong></h4>
+                            <input type="hidden" name="id" value="{{ $debilidad->id }}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"> Cerrar </button>
+                            <button type="submit" class="btn btn-success" > Aceptar </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection

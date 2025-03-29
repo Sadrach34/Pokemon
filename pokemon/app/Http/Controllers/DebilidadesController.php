@@ -69,4 +69,21 @@ class DebilidadesController extends Controller
             return redirect()->route('debilidades')->with('message', 'Debilidad no encontrada');
         }
     }
+
+    public function delete(Request $request) {
+        $data = $request->validate([
+            'id' => 'required|integer',
+        ],[
+            'id.required' => 'El id es requerido',
+            'id.integer' => 'El id debe ser un número',
+        ]);
+        $debilidad = Debilidad::where('id', '=', $data['id'])->where('status', '=', 1)->first();
+        if($debilidad){
+            $debilidad->status = 0;
+            $debilidad->save();
+            return redirect()->route('debilidades')->with('success', 'debilidad krankeada');
+        }else{
+            return redirect()->route('debilidades')->with('error', 'debilidad no encontrado');
+        }
+    }
 }

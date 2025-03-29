@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PokemonsController extends Controller
 {
     public function index(){
-        $pokemons = Pokemon::where('id', '=', 1)->get();
+        $pokemons = Pokemon::where('status', '=', 1)->get();
         return view('pokemon.index', compact('pokemons'));
     }
 
@@ -74,6 +74,23 @@ class PokemonsController extends Controller
             return redirect()->route('pokemon')->with('message', 'Pokemon actualizado');
         }else{
             return redirect()->route('pokemon')->with('message', 'Pokemon no encontrado');
+        }
+    }
+
+    public function delete(Request $request) {
+        $data = $request->validate([
+            'id' => 'required|integer',
+        ],[
+            'id.required' => 'El id es requerido',
+            'id.integer' => 'El id debe ser un número',
+        ]);
+        $pokemon = Pokemon::where('id', '=', $data['id'])->where('status', '=', 1)->first();
+        if($pokemon){
+            $pokemon->status = 0;
+            $pokemon->save();
+            return redirect()->route('pokemon')->with('success', 'Pokemon krankeado');
+        }else{
+            return redirect()->route('pokemon')->with('error', 'Pokemon no encontrado');
         }
     }
 }
