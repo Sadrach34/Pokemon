@@ -26,16 +26,19 @@ class PokemonsController extends Controller
             'nombre' => 'required|max:20|string',
             'primary' => 'required|integer',
             'secondary' => 'integer|nullable',
+            'region' => 'string',
         ],[
             'nombre.required' => 'El nombre es requerido',
             'primary.required' => 'El tipo es requerido',
             'primary.integer' => 'El tipo debe ser un número',
             'secondary.integer' => 'El tipo debe ser un número',
+            'region.requiered' => 'La region es requerida',
         ]);
         Pokemon::create([
             'nombre' => $data['nombre'],
             'primary' => $data['primary'],
             'secondary' => $data['secondary'],
+            'region' => $data['region'],
         ]);
         return redirect()->route('pokemon')->with('message', 'Pokemon agregado');
     }

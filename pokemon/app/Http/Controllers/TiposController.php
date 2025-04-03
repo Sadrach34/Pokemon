@@ -34,6 +34,7 @@ class TiposController extends Controller
 
         Tipo::create([
             'nombre' => $data['nombre'],
+            'status' => 1,
         ]);
 
         return redirect()->route('tipos')->with('message', 'Tipo agregado');
